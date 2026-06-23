@@ -6,9 +6,12 @@ import { readDB, writeDB } from './db.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Enable CORS for frontend development server
+// Enable CORS dynamically to support local development and Vercel domains
 app.use(cors({
-  origin: 'http://localhost:5173', // standard Vite default port
+  origin: (origin, callback) => {
+    // Reflect origin back to satisfy credentials: true
+    callback(null, true);
+  },
   credentials: true
 }));
 
