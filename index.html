@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajaia Docs - API Gateway Status</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    .card {
+      background: rgba(30, 41, 59, 0.7);
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-width: 480px;
+    }
+    h1 {
+      color: #6366f1;
+      margin-top: 0;
+      font-size: 2rem;
+    }
+    p {
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    .status-badge {
+      display: inline-block;
+      background-color: #10b981;
+      color: #0f172a;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 1.5rem 0 0 0;
+    }
+    li {
+      margin: 0.5rem 0;
+    }
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="status-badge">API Running</div>
+    <h1>Ajaia Docs Backend</h1>
+    <p>The backend API serverless gateway is deployed and running successfully.</p>
+    <p>You can access the endpoints below to test connectivity:</p>
+    <ul>
+      <li><a href="/api/users">Get Seeded Workspace Users</a></li>
+      <li><a href="/api/documents">Get User Documents (Requires X-User-ID)</a></li>
+    </ul>
+  </div>
+</body>
+</html>

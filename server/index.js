@@ -49,8 +49,10 @@ async function authenticateUser(req, res, next) {
   next();
 }
 
+const apiRouter = express.Router();
+
 // 1. Get all users (useful for user switching and sharing menu)
-app.get('/api/users', async (req, res, next) => {
+apiRouter.get('/users', async (req, res, next) => {
   try {
     const db = await readDB();
     res.json(db.users);
@@ -60,7 +62,7 @@ app.get('/api/users', async (req, res, next) => {
 });
 
 // 2. Get all documents visible to the current user (owned or shared with them)
-app.get('/api/documents', authenticateUser, async (req, res, next) => {
+apiRouter.get('/documents', authenticateUser, async (req, res, next) => {
   try {
     const db = await readDB();
     const userDocs = db.documents.filter(doc => 
@@ -73,7 +75,7 @@ app.get('/api/documents', authenticateUser, async (req, res, next) => {
 });
 
 // 3. Get details of a specific document
-app.get('/api/documents/:id', authenticateUser, async (req, res, next) => {
+apiRouter.get('/documents/:id', authenticateUser, async (req, res, next) => {
   try {
     const { id } = req.params;
     const db = await readDB();
@@ -98,7 +100,7 @@ app.get('/api/documents/:id', authenticateUser, async (req, res, next) => {
 });
 
 // 4. Create a new document
-app.post('/api/documents', authenticateUser, async (req, res, next) => {
+apiRouter.post('/documents', authenticateUser, async (req, res, next) => {
   try {
     const { title, content } = req.body;
     const db = await readDB();
@@ -123,7 +125,7 @@ app.post('/api/documents', authenticateUser, async (req, res, next) => {
 });
 
 // 5. Update an existing document (title and/or content)
-app.put('/api/documents/:id', authenticateUser, async (req, res, next) => {
+apiRouter.put('/documents/:id', authenticateUser, async (req, res, next) => {
   try {
     const { id } = req.params;
     const { title, content } = req.body;
@@ -158,7 +160,7 @@ app.put('/api/documents/:id', authenticateUser, async (req, res, next) => {
 });
 
 // 6. Share document with other users
-app.post('/api/documents/:id/share', authenticateUser, async (req, res, next) => {
+apiRouter.post('/documents/:id/share', authenticateUser, async (req, res, next) => {
   try {
     const { id } = req.params;
     const { sharedWith } = req.body; // Array of user IDs
@@ -197,7 +199,7 @@ app.post('/api/documents/:id/share', authenticateUser, async (req, res, next) =>
 });
 
 // 7. Delete document
-app.delete('/api/documents/:id', authenticateUser, async (req, res, next) => {
+apiRouter.delete('/documents/:id', authenticateUser, async (req, res, next) => {
   try {
     const { id } = req.params;
     const db = await readDB();
@@ -224,7 +226,7 @@ app.delete('/api/documents/:id', authenticateUser, async (req, res, next) => {
 });
 
 // 8. Upload file and import content
-app.post('/api/documents/import', authenticateUser, upload.single('file'), async (req, res, next) => {
+apiRouter.post('/documents/import', authenticateUser, upload.single('file'), async (req, res, next) => {
   try {
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded or invalid file format. Only .txt and .md are allowed.' });
@@ -286,6 +288,22 @@ app.post('/api/documents/import', authenticateUser, upload.single('file'), async
     next(err);
   }
 });
+
+// Root status landing page
+app.get('/', (req, res) => {
+  res.json({
+    status: 'success',
+    message: 'Ajaia Docs Backend API is running successfully!',
+    endpoints: {
+      users: '/api/users',
+      documents: '/api/documents'
+    }
+  });
+});
+
+// Mount the API router under both /api and / to handle Vercel path resolution variations
+app.use('/api', apiRouter);
+app.use('/', apiRouter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
