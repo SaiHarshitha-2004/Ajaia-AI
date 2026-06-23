@@ -107,3 +107,4 @@ npm test
 ### Verification Methods
 1. **Automated Tests:** Verified security access rules, document creation, sharing settings, and deletion via `node --test`.
 2. **Manual UX Quality Check:** Verified responsiveness, switching active profiles in the sidebar to prove permissions change, uploading complex Markdown structures, and testing toolbar actions (Bold, Headings, Lists).
++

@@ -298,3 +298,4 @@ const serverInstance = app.listen(PORT, () => {
 });
 
 export { app, serverInstance };
+export default app;
