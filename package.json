@@ -1,0 +1,14 @@
+{
+  "name": "ajaia-document-editor",
+  "version": "1.0.0",
+  "description": "A collaborative rich-text document editor with sharing and file uploads",
+  "scripts": {
+    "server": "npm run start --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "npm run test --prefix server"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

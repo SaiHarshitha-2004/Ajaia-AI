@@ -1,0 +1,63 @@
+{
+  "users": [
+    {
+      "id": "alice",
+      "name": "Alice Smith",
+      "avatarColor": "#6366f1"
+    },
+    {
+      "id": "bob",
+      "name": "Bob Johnson",
+      "avatarColor": "#10b981"
+    },
+    {
+      "id": "charlie",
+      "name": "Charlie Brown",
+      "avatarColor": "#f59e0b"
+    }
+  ],
+  "documents": [
+    {
+      "id": "welcome-doc",
+      "title": "Welcome to Ajaia Docs - Alice ",
+      "content": "<h1>Welcome to the Editor!</h1><p>This is a rich-text document editing space. You can use the formatting options above to style your content, import documents, or share them with others.</p><ul><li><b>Bold</b>, <i>Italic</i>, and <u>Underline</u> styles</li><li>Headings and list styles</li><li>Sharing documents with coworkers</li></ul>",
+      "ownerId": "alice",
+      "sharedWith": [
+        "bob"
+      ],
+      "createdAt": "2026-06-23T05:48:41.810Z",
+      "updatedAt": "2026-06-23T06:03:28.769Z"
+    },
+    {
+      "id": "doc-1782194049511-qrwktv7f8",
+      "title": "doc1",
+      "content": "<p>Hi alice this is bob</p><p><br></p>",
+      "ownerId": "alice",
+      "sharedWith": [
+        "bob"
+      ],
+      "createdAt": "2026-06-23T05:54:09.511Z",
+      "updatedAt": "2026-06-23T06:04:22.880Z"
+    },
+    {
+      "id": "doc-1782194671239-j9kc6qctw",
+      "title": "Untitled Document",
+      "content": "<p><br></p>",
+      "ownerId": "bob",
+      "sharedWith": [
+        "alice"
+      ],
+      "createdAt": "2026-06-23T06:04:31.240Z",
+      "updatedAt": "2026-06-23T06:05:33.629Z"
+    },
+    {
+      "id": "doc-1782195223953-ikyr45p0i",
+      "title": "Untitled Document",
+      "content": "<p><br></p>",
+      "ownerId": "alice",
+      "sharedWith": [],
+      "createdAt": "2026-06-23T06:13:43.954Z",
+      "updatedAt": "2026-06-23T06:13:43.954Z"
+    }
+  ]
+}
